@@ -37,7 +37,7 @@ const App = () => {
       setIsQuizStarted(false);
       setIsQuizCompleted(true);
       fetch(
-  "http://localhost:8080/calc/"+paperId+"?response="+resultData.response)
+  "https://serene-chamber-52731.herokuapp.com/calc/"+paperId+"?response="+resultData.response)
                     .then((res) => res.json())
                     .then((json) => {
                       console.log("here")
