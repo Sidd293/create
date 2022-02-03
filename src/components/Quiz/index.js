@@ -102,7 +102,7 @@ setResponse(r=>r+""+data[questionIndex].question.qid+"$"+return_op(userSlectedId
                 <Item.Meta>
                   <Message size="huge" floating>
                     <b>{`Q. ${he.decode(data[questionIndex].question.statement)}`}</b>
-                    <div><img width  = "30%" height = "30%" src =  {he.decode(data[questionIndex].question.imgsrc)}></img></div>
+                    <div>{(he.decode(data[questionIndex].question.imgsrc).length>2)?<img width  = "30%" height = "30%" src =  {he.decode(data[questionIndex].question.imgsrc)}></img>:null}</div>
                   </Message>
                   <br />
                   <Item.Description>

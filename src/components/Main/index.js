@@ -46,7 +46,7 @@ const Main = ({ startQuiz }) => {
   }, [paperId]);
      useEffect(() => {
        var t = [];
-      fetch("https://serene-chamber-52731.herokuapp.com/allTests")
+      fetch("http://localhost:8080/allTests")
       .then(respone => respone.json())
       .then(data =>{
        data.map(m=>{
@@ -87,7 +87,7 @@ const Main = ({ startQuiz }) => {
     if (error) setError(null);
 
     // const API = `https://opentdb.com/api.php?amount=${numOfQuestions}&category=${category}&difficulty=${difficulty}&type=${questionsType}`;
-    const API = `https://serene-chamber-52731.herokuapp.com/show/${paperId}`;
+    const API = `http://localhost:8080/show/${paperId}`;
    console.log(paperId);
     fetch(API)
       .then(respone => respone.json())
