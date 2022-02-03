@@ -61,6 +61,7 @@ const Stats = ({
         />
         
       </div>
+    <div>Brainlox</div>
     </Segment>
   );
 };
