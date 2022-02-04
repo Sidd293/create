@@ -40,6 +40,7 @@ const Main = ({ startQuiz }) => {
   const [offline, setOffline] = useState(false);
   const [paperId,setPaperId]  = useState();
   const [papers,setPapers] = useState([]);
+  const [testsLoaded,setTestsLoaded] = useState(false)
   useEffect(() => {
     if(paperId)
     setAllFieldsSelected(true)
@@ -60,6 +61,7 @@ const Main = ({ startQuiz }) => {
         console.log(ob);
        })
         setPapers(t);
+        setTestsLoaded(true);
       });
      
        return () => {
@@ -167,8 +169,8 @@ const results = data;
                   fluid
                   selection
                   name="category"
-                  placeholder="Select Question Paper"
-                  header="Select Question Paper"
+        placeholder={testsLoaded?"Select Question Paper":"fetching tests"}
+        header={testsLoaded?"Select Question Paper":"fetching tests"}
                   options={papers}
                   value={paperId}
                   onChange={(e, { value }) =>{setPaperId(value)}}
