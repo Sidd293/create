@@ -30,13 +30,17 @@ const Header = () => {
   };
 
   return (
+    <>
     <Menu   style={{backgroundColor:"#FADE10",display :"flex",justifyContent:"center"}} size="massive">
       <Menu.Item  header>
      <img src = {logo} style={{transform :"scale(5)"}}></img>   
      {/* <h1 style={{ color: 'white' }}>QuizApp</h1> */}
       </Menu.Item>
-      {promptEvent && !isAppInstalled && (
-        <Menu.Item position="right">
+     
+    </Menu>
+    <Menu.Item   style={{backgroundColor:"#FADE10",display :"flex",justifyContent:"center",margin:0}} size="massive">
+    {promptEvent && !isAppInstalled&& (
+        <Menu.Item position="center">
           <Button
             color="teal"
             icon="cloud download"
@@ -46,7 +50,8 @@ const Header = () => {
           />
         </Menu.Item>
       )}
-    </Menu>
+    </Menu.Item>
+    </>
   );
 };
 

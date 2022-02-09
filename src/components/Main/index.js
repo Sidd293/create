@@ -252,7 +252,7 @@ const results = data;
                   placeholder="Select Minutes"
                   header="Select Minutes"
                   options={COUNTDOWN_TIME.minutes}
-                  value={!minSelected?"MIN":countdownTime.hours}
+                  value={!minSelected?"MIN":countdownTime.minutes}
                   onChange={handleTimeChange}
                   disabled={processing}
                 />
