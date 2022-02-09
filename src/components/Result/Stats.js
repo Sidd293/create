@@ -63,7 +63,7 @@ const Stats = ({
         </a>
         
       </div>
-    <div>Brainlox</div>
+    
     </Segment>
   );
 };
