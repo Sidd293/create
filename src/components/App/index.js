@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 
 import Layout from '../Layout';
+import Navi from '../Navi';
+
 import Loader from '../Loader';
 import Main from '../Main';
 import Quiz from '../Quiz';
@@ -133,6 +135,7 @@ const App = () => {
 
 <Router>
 <Routes>
+  <Route path = "/" element = {<Navi/>}/>
 <Route path = '/:id' element = {!loading ? (<Main startQuiz={startQuiz}></Main>):<Loader/>}/>
 <Route path= {`/:paperId/start`} element = {!loading ? ( <Quiz data={data} countdownTime={countdownTime} endQuiz={endQuiz}  paperId = {paperId}/>):<Loader/>} ></Route>
 <Route path= {`/:paperId/result`} element =   {!loading ? ( <Result {...resultData} replayQuiz={replayQuiz} resetQuiz={resetQuiz} />):<Loader/>}   />
