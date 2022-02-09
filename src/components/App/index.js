@@ -5,7 +5,7 @@ import Loader from '../Loader';
 import Main from '../Main';
 import Quiz from '../Quiz';
 import Result from '../Result';
-
+import { BrowserRouter as Router ,Routes,Route,useNavigate} from 'react-router-dom';
 import { shuffle } from '../../utils';
 
 const App = () => {
@@ -16,11 +16,12 @@ const App = () => {
   const [isQuizCompleted, setIsQuizCompleted] = useState(false);
   const [resultData, setResultData] = useState(null);
   const [paperId,setPaperId]  = useState();
-
-  const startQuiz = (data,id ,countdownTime) => {
+// const nav = useNavigate();
+   
+  // const navigate = useNavigate();
+  const startQuiz = (data,id,countdownTime) => {
     setLoading(true);
     setCountdownTime(countdownTime);
-
     setTimeout(() => {
       setData(data);
       console.log(data);
@@ -31,11 +32,12 @@ const App = () => {
   };
 
   const endQuiz = resultData => {
+   
     setLoading(true);
-     
     setTimeout(() => {
       setIsQuizStarted(false);
       setIsQuizCompleted(true);
+      
       fetch(
   "http://serene-chamber-52731.herokuapp.com/calc/"+paperId+"?response="+resultData.response)
                     .then((res) => res.json())
@@ -47,16 +49,21 @@ const App = () => {
                       // console.log(resultData.correctAnswers,json.correct);
                       // console.log("here")
                        console.log(resultData);
+                
                        resultData.questionsAndAnswers.map((r,i)=>{
                          r.correct_answer = json.answers[i];
                        })
-      
+                    
 
                        
                     }).then(()=>{
                       setResultData(resultData);
                       console.log(resultData);
                       setLoading(false);
+    resultData.navigate(`/${paperId}/result`);
+
+                      // navigate("/result");
+                     
                     })
      
     }, 2000);
@@ -95,17 +102,48 @@ const App = () => {
 
   return (
     <Layout>
-      {loading && <Loader />}
+      
+       {/* {loading && <Loader />}
       {!loading && !isQuizStarted && !isQuizCompleted && (
         <Main startQuiz={startQuiz} />
-      )}
-      {!loading && isQuizStarted && (
-        <Quiz data={data} countdownTime={countdownTime} endQuiz={endQuiz} />
+       )}
+       {!loading && isQuizStarted && (
+         <Quiz data={data} countdownTime={countdownTime} endQuiz={endQuiz} />
       )}
       {!loading && isQuizCompleted && (
-        <Result {...resultData} replayQuiz={replayQuiz} resetQuiz={resetQuiz} />
-      )}
-    </Layout>
+       <Result {...resultData} replayQuiz={replayQuiz} resetQuiz={resetQuiz} />
+     )} */}
+
+
+
+     
+    {/* <Router> */}
+      {/* <Routes> */}
+{/* <Route path='/:p' element = {!loading ? (<Main startQuiz={startQuiz}></Main>):<Loader/>}/> */}
+
+{/* <Route path= {`/:paperId/start`} element = {!loading ? ( <Quiz data={data} countdownTime={countdownTime} endQuiz={endQuiz} />):<Loader/>} > */}
+{/* {!loading ? ( <Quiz data={data} countdownTime={countdownTime} endQuiz={endQuiz} />):<Loader/>} */}
+{/* </Route> */}
+{/* <Route path= {"/:paperId/result"} element =   {!loading ? ( <Result {...resultData} replayQuiz={replayQuiz} resetQuiz={resetQuiz} />):<Loader/>}   > */}
+{/* {!loading && ( <Result {...resultData} replayQuiz={replayQuiz} resetQuiz={resetQuiz} />)} */}
+{/* </Route>
+</Routes>
+
+    </Router> */}
+
+<Router>
+<Routes>
+<Route path = '/:id' element = {!loading ? (<Main startQuiz={startQuiz}></Main>):<Loader/>}/>
+<Route path= {`/:paperId/start`} element = {!loading ? ( <Quiz data={data} countdownTime={countdownTime} endQuiz={endQuiz}  paperId = {paperId}/>):<Loader/>} ></Route>
+<Route path= {`/:paperId/result`} element =   {!loading ? ( <Result {...resultData} replayQuiz={replayQuiz} resetQuiz={resetQuiz} />):<Loader/>}   />
+
+</Routes>
+
+</Router>
+
+</Layout>
+
+
   );
 };
 

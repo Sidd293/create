@@ -50,15 +50,17 @@ const Stats = ({
           labelPosition="left"
           style={{ marginRight: 15, marginBottom: 8 }}
         />
+        <a href='https://brainlox.com/'>
         <Button
-          color="teal"
+         inverted color="red"
           content="Back to Home"
-          onClick={resetQuiz}
+          // onClick={resetQuiz}
           size="big"
           icon="home"
           labelPosition="left"
           style={{ marginBottom: 8 }}
         />
+        </a>
         
       </div>
     <div>Brainlox</div>

@@ -29,9 +29,10 @@ const Header = () => {
   };
 
   return (
-    <Menu stackable inverted size="massive">
+    <Menu  stackable  size="massive">
       <Menu.Item header>
-        <h1 style={{ color: '#2185D0' }}>QuizApp</h1>
+     <img src = "https://brainlox.com/images/brainLox_white.jpeg"></img>   
+     {/* <h1 style={{ color: 'white' }}>QuizApp</h1> */}
       </Menu.Item>
       {promptEvent && !isAppInstalled && (
         <Menu.Item position="right">

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {
   Container,
@@ -15,8 +15,10 @@ import he from 'he';
 
 import Countdown from '../Countdown';
 import { getLetter } from '../../utils';
+import { useNavigate } from 'react-router-dom';
 
-const Quiz = ({ data, countdownTime, endQuiz }) => {
+const Quiz = ({ data, countdownTime, endQuiz,paperId }) => {
+  const navigate = useNavigate();
   const [questionIndex, setQuestionIndex] = useState(0);
   const [correctAnswers, setCorrectAnswers] = useState(0);
   const [userSlectedAns, setUserSlectedAns] = useState(null);
@@ -48,6 +50,7 @@ setResponse(r=>r+""+data[questionIndex].question.qid+"$"+return_op(userSlectedId
       point
     });
 
+
     if (questionIndex === data.length -1) {
 // setResponse(r=>r+""+data[questionIndex].question.qid+"$"+return_op(userSlectedId)+"$")
 
@@ -56,7 +59,8 @@ setResponse(r=>r+""+data[questionIndex].question.qid+"$"+return_op(userSlectedId
         correctAnswers: correctAnswers + point,
         timeTaken,
         questionsAndAnswers: qna,
-        response: response+""+data[questionIndex].question.qid+"$"+return_op(userSlectedId)+"$"
+        response: response+""+data[questionIndex].question.qid+"$"+return_op(userSlectedId)+"$",
+        navigate:navigate
       });
     }
 
@@ -68,16 +72,22 @@ setResponse(r=>r+""+data[questionIndex].question.qid+"$"+return_op(userSlectedId
 
   const timeOver = timeTaken => {
 setResponse(r=>r+""+data[questionIndex].question.qid+"$"+return_op(userSlectedId)+"$")
-    
+
     return endQuiz({
       totalQuestions: data.length,
       correctAnswers,
       timeTaken,
       questionsAndAnswers,
-      response
+      response,
+      navigate
     });
   };
-
+  // useEffect(() => {
+  //   if(!data)
+  //   navigate('/HOME')
+  
+   
+  // }, []);
   return (
     <Item.Header>
       <Container>
@@ -118,13 +128,13 @@ setResponse(r=>r+""+data[questionIndex].question.qid+"$"+return_op(userSlectedId
                         <Menu.Item
                           index={op.optionId}
                           name={decodedOption}
-                          active={userSlectedAns === decodedOption}
+                          active={userSlectedId === op.optionId}
                           onClick={handleItemClick}
                           size="large"
                           widths = "fifteen"
                         >
                           <b style={{ marginRight: '8px' }}>{letter}</b>
-                          {decodedOption}
+                          {decodedOption}{" "}
                          {(option.imgsrc.length>2)?<div> <img src={he.decode(option.imgsrc)}  width  = "15%" height = "15%"></img>
                          </div>:null}
                         </Menu.Item>
@@ -135,14 +145,14 @@ setResponse(r=>r+""+data[questionIndex].question.qid+"$"+return_op(userSlectedId
                 <Divider />
                 <Item.Extra>
                   <Button
-                    primary
+                    inverted color='orange'
                     content="Next"
                     onClick={handleNext}
                     floated="right"
                     size="big"
                     icon="right chevron"
                     labelPosition="right"
-                    disabled={!userSlectedAns}
+                    disabled={!userSlectedId}
                   />
                 </Item.Extra>
               </Item.Content>

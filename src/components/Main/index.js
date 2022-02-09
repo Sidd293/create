@@ -10,8 +10,8 @@ import {
   Message,
 } from 'semantic-ui-react';
 
-import mindImg from '../../images/mind.svg';
-
+import mindImg from '../../images/mindimg.png';
+import { Link , useParams,useNavigate } from 'react-router-dom';
 import {
   CATEGORIES,
   NUM_OF_QUESTIONS,
@@ -25,6 +25,9 @@ import Offline from '../Offline';
 
 
 const Main = ({ startQuiz }) => {
+  const {id} = useParams();
+  const navigate  = useNavigate();
+  
   const [category, setCategory] = useState('0');
   const [numOfQuestions, setNumOfQuestions] = useState(5);
   const [difficulty, setDifficulty] = useState('0');
@@ -40,7 +43,13 @@ const Main = ({ startQuiz }) => {
   const [offline, setOffline] = useState(false);
   const [paperId,setPaperId]  = useState();
   const [papers,setPapers] = useState([]);
-  const [testsLoaded,setTestsLoaded] = useState(false)
+  const [idGiven,setIsIdGiven] = useState(false);
+  const [testsLoaded,setTestsLoaded] = useState(true)
+  useEffect(() => {
+    setPaperId(id);
+    console.log(id,"is id");
+if(id == "HOME"){console.log(id , "is home"); setIsIdGiven(false);}else setIsIdGiven(true);
+    }, []);
   useEffect(() => {
     if(paperId)
     setAllFieldsSelected(true)
@@ -98,7 +107,8 @@ const Main = ({ startQuiz }) => {
           const { response_code, result } = data;
 const results = data;
    console.log(data);
-
+   if(data.length == 0) 
+    navigate('/HOME')
           if (response_code === 1) {
             const message = (
               <p>
@@ -131,6 +141,8 @@ const results = data;
             paperId, 
             countdownTime.hours + countdownTime.minutes + countdownTime.seconds
           );
+          if(data.length > 0)
+        navigate(`/${paperId}/start`)
         }, 1000)
       )
       .catch(error =>
@@ -155,7 +167,7 @@ const results = data;
             <Item.Image src={mindImg} />
             <Item.Content>
               <Item.Header>
-                <h1>The Ultimate Trivia Quiz</h1>
+                {/* <h1>The Ultimate Trivia Quiz</h1> */}
               </Item.Header>
               {error && (
                 <Message error onDismiss={() => setError(null)}>
@@ -164,7 +176,7 @@ const results = data;
                 </Message>
               )}
               <Divider />
-              <Item.Meta>
+              {!idGiven?<Item.Meta>
                 <Dropdown
                   fluid
                   selection
@@ -246,18 +258,20 @@ const results = data;
                   onChange={handleTimeChange}
                   disabled={processing}
                 />
-              </Item.Meta>
+              </Item.Meta>:null}
               <Divider />
               <Item.Extra>
+                
                 <Button
-                  primary
+                  inverted color='orange'
                   size="big"
                   icon="play"
                   labelPosition="left"
-                  content={processing ? 'Processing...' : 'Play Now'}
+                  content={idGiven? 'StartQuiz': processing ? 'Processing...' : 'Play Now'}
                   onClick={fetchData}
-                  disabled={!allFieldsSelected || processing}
+                  disabled={ !allFieldsSelected || processing}
                 />
+               
               </Item.Extra>
             </Item.Content>
           </Item>

@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Container, Menu } from 'semantic-ui-react';
 
 import Stats from './Stats';
 import QNA from './QNA';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const Result = ({
   totalQuestions,
@@ -18,6 +19,13 @@ const Result = ({
   const handleTabClick = (e, { name }) => {
     setActiveTab(name);
   };
+  const navigate = useNavigate();
+useEffect(() => {
+  if(totalQuestions == null)
+  navigate('/HOME')
+
+ 
+}, []);
 
   return (
     <Container>
