@@ -9,7 +9,7 @@ import {
   Button,
   Message,
 } from 'semantic-ui-react';
-
+import "./style.css";
 import mindImg from '../../images/mindimg.png';
 import { Link , useParams,useNavigate } from 'react-router-dom';
 import {
@@ -45,6 +45,9 @@ const Main = ({ startQuiz }) => {
   const [papers,setPapers] = useState([]);
   const [idGiven,setIsIdGiven] = useState(false);
   const [testsLoaded,setTestsLoaded] = useState(true)
+  const [minSelected,setMinSelected]  =useState(false)
+  const [hourSelected,setHourSelected]  =useState(false)
+
   useEffect(() => {
     setPaperId(id);
     console.log(id,"is id");
@@ -79,6 +82,9 @@ if(id == "HOME"){console.log(id , "is home"); setIsIdGiven(false);}else setIsIdG
      }, []);
      
   const handleTimeChange = (e, { name, value }) => {
+    if(name == "minutes") setMinSelected(true);
+    if(name == "hours") setHourSelected(true);
+
     setCountdownTime({ ...countdownTime, [name]: value });
   };
 
@@ -177,12 +183,14 @@ const results = data;
               )}
               <Divider />
               {!idGiven?<Item.Meta>
+                <h3 style = {{color:"red"}}>PICK YOUR CHOICE</h3>
+
                 <Dropdown
                   fluid
                   selection
                   name="category"
-        placeholder={testsLoaded?"Select Question Paper":"fetching tests"}
-        header={testsLoaded?"Select Question Paper":"fetching tests"}
+        placeholder={testsLoaded?"":"fetching tests"}
+        header={testsLoaded?"":"fetching tests"}
                   options={papers}
                   value={paperId}
                   onChange={(e, { value }) =>{setPaperId(value)}}
@@ -224,6 +232,7 @@ const results = data;
                   onChange={(e, { value }) => setQuestionsType(value)}
                   disabled={processing}
                 /> */}
+                <h3 style = {{color:"red"}}>SET THE TIME FOR THE TEST</h3>
                 <br />
                 <Dropdown
                   search
@@ -232,7 +241,7 @@ const results = data;
                   placeholder="Select Hours"
                   header="Select Hours"
                   options={COUNTDOWN_TIME.hours}
-                  value={countdownTime.hours}
+                  value={!hourSelected?"HRS":countdownTime.hours}
                   onChange={handleTimeChange}
                   disabled={processing}
                 />
@@ -243,11 +252,11 @@ const results = data;
                   placeholder="Select Minutes"
                   header="Select Minutes"
                   options={COUNTDOWN_TIME.minutes}
-                  value={countdownTime.minutes}
+                  value={!minSelected?"MIN":countdownTime.hours}
                   onChange={handleTimeChange}
                   disabled={processing}
                 />
-                <Dropdown
+                {/* <Dropdown
                   search
                   selection
                   name="seconds"
@@ -257,7 +266,7 @@ const results = data;
                   value={countdownTime.seconds}
                   onChange={handleTimeChange}
                   disabled={processing}
-                />
+                /> */}
               </Item.Meta>:null}
               <Divider />
               <Item.Extra>
