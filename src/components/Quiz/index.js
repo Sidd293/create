@@ -15,10 +15,30 @@ import he from 'he';
 
 import Countdown from '../Countdown';
 import { getLetter } from '../../utils';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation  } from 'react-router-dom';
+import { COUNTDOWN_TIME } from '../../constants';
 
 const Quiz = ({ data, countdownTime, endQuiz,paperId }) => {
   const navigate = useNavigate();
+  const refresh = ()=>{
+    setTimeout(() => {
+      window.location.reload();
+    },500);
+  }
+  const location = useLocation();
+ useEffect(() => {
+ 
+  if(!data)
+ {navigate(location.pathname.slice(0,-5));
+  refresh(); 
+}
+return ()=>{
+  navigate = null;
+  
+}
+ }, [])
+ 
+  
   const [questionIndex, setQuestionIndex] = useState(0);
   const [correctAnswers, setCorrectAnswers] = useState(0);
   const [userSlectedAns, setUserSlectedAns] = useState(null);
@@ -83,12 +103,16 @@ setResponse(r=>r+""+data[questionIndex].question.qid+"$"+return_op(userSlectedId
     });
   };
   // useEffect(() => {
-  //   if(!data)
-  //   navigate('/HOME')
+  //   setTimeout(()=>{
+  //     if(data == null)
+  //     navigate('/HOME')
+  //   },1000)
+ 
   
    
   // }, []);
-  return (
+  
+  return ((data==null)?<h1>no questions</h1>:
     <Item.Header>
       <Container>
         <Segment>
