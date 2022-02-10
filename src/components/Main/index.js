@@ -278,7 +278,7 @@ const results = data;
                   labelPosition="left"
                   content={idGiven? 'StartQuiz': processing ? 'Processing...' : 'Play Now'}
                   onClick={fetchData}
-                  disabled={ !idGiven || !allFieldsSelected || processing}
+                  disabled={ !allFieldsSelected || processing}
                 />
                
               </Item.Extra>
