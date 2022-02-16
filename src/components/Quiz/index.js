@@ -152,6 +152,7 @@ setResponse(r=>r+""+data[questionIndex].question.qid+"$"+return_op(userSlectedId
                         <Menu.Item
                           index={op.optionId}
                           name={decodedOption}
+                          style ={{backgroundColor : userSlectedId === op.optionId ?"hsl(40, 100%, 75%)" :null}}
                           active={userSlectedId === op.optionId}
                           onClick={handleItemClick}
                           size="large"
