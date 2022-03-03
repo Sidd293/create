@@ -98,23 +98,13 @@ const Stats = ({
   const [gif,setGif] = useState(["https://c.tenor.com/PXwFTB80WIwAAAAi/bravo.gif","https://c.tenor.com/SF9LZp7oSVoAAAAM/bravo-clap.gif","https://c.tenor.com/vsenqx_Ke90AAAAi/clap-cat.gif","https://c.tenor.com/b2VImdfyQHcAAAAC/the-simpsons-simpsons.gif"]);
   const [open, setOpen] = useState(false);
  const [mail,setMail] = useState("");
- const [tmail,setTmail] = useState("");
+ const [tmail,setTmail] = useState(localStorage.getItem("email"));
   const onOpenModal = () => setOpen(true);
   const onCloseModal = () => setOpen(false);
-  const [mal,setMal] = useState("")
-useEffect(() => {
-
- setMal(JSON.parse(localStorage.getItem("email")).toString);
-
-  return () => {
-   
-  }
-}, [])
-
 const sendmail= ()=>{
-console.log(mal);
+
   axios.post('http://serene-chamber-52731.herokuapp.com/sendemail', {
-    email :mal,
+    email :tmail,
     text : `your score is ${score}.thanks for playing the game`,
      })
      .then(function (response) {
@@ -213,7 +203,7 @@ else
         </a>
         <Button
          inverted color="red"
-          content="Send mail"
+          content="Send Your Scores"
           // onClick={onOpenModal}
           onClick={sendmail}
           size="big"
