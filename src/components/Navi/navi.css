@@ -1,0 +1,39 @@
+.landing_container{
+display: flex;
+margin-top: -12px;
+}
+
+.surface{
+    background-color: rgb(250, 250, 250);
+width:50vw;
+height:90vh;  
+  display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.img{
+
+    /* justify-items: center; */
+
+    background-image: url("https://images.pexels.com/photos/5303515/pexels-photo-5303515.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+background-repeat: no-repeat;
+background-size: cover;
+}
+.f{
+    /* display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center; */
+
+    /* background-color: blue; */
+     
+}
+.txt{
+    width: fit-content;
+}
+@media only screen and (max-width: 750px) {
+ .img{
+     background-position: 30% 0;
+     /* background-size:contain */
+ }
+}

@@ -51,7 +51,7 @@ const Main = ({ startQuiz }) => {
   useEffect(() => {
     setPaperId(id);
     console.log(id,"is id");
-if(id == "HOME"){console.log(id , "is home"); setIsIdGiven(false);}else setIsIdGiven(true);
+        if(id == "HOME" ){console.log(id , "is home"); setIsIdGiven(false);}else setIsIdGiven(true);
     }, []);
   useEffect(() => {
     if(paperId)
@@ -59,6 +59,8 @@ if(id == "HOME"){console.log(id , "is home"); setIsIdGiven(false);}else setIsIdG
   }, [paperId]);
      useEffect(() => {
        var t = [];
+    if(JSON.parse(localStorage.getItem("logged")) == false)window.location.href = "/"
+
       fetch("http://serene-chamber-52731.herokuapp.com/allTests")
       .then(respone => respone.json())
       .then(data =>{

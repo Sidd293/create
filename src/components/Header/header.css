@@ -1,0 +1,39 @@
+.header
+{
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.user{
+    position: absolute;
+    right: 1%;
+    top:-2%;
+    display: flex;
+
+    
+}
+.name{
+
+}
+.pp{
+    width:30px;
+    height: 30px;
+    border-radius: 100%;
+    position: absolute;
+    left: -22%;
+    top:43%;
+    
+}
+@media only screen and (max-width: 600px) {
+.name{
+  display: none;
+}
+.pp{
+    position: absolute;
+    left:-50px;
+    top:20px;
+
+
+}
+  }

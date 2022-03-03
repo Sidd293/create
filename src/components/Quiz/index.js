@@ -49,11 +49,13 @@ return ()=>{
   const handleItemClick = (e, {name ,index}) => {
     setUserSlectedAns(name);
     setUserSlectedId(index)
-    console.log(index)
+    // console.log(index)
   };
 const return_op = (id) => id=='0'?"a":id=="1"?"b":id=="2"?"c":"d";
   const handleNext = () => {
     let point = 0;
+    setUserSlectedAns("");
+    setUserSlectedId()
 setResponse(r=>r+""+data[questionIndex].question.qid+"$"+return_op(userSlectedId)+"$")
     // if (userSlectedAns === he.decode(data[questionIndex].correct_answer)) {
     //   point = 1;
