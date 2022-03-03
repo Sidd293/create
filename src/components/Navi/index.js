@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button ,Icon} from 'semantic-ui-react';
 import { auth,provider } from "../Firebase";
 import "./navi.css"
+import axios from 'axios';
 const Navi = () => {
 // const navigate = useNavigate();
  useEffect(() => {
@@ -51,21 +52,33 @@ const navigate = useNavigate();
     signInWithPopup(auth, provider)
       .then((result) => {
   
-  
-        const nam = result.user.displayName;
-        const emal = result.user.email;
-        const pPic = result.user.photoURL;
-        setName(result.user.displayName)
-        setMail(result.user.email);
-        setLogged(true);
-        setProfilePic(result.user.photoURL);
-        localStorage.setItem("name", nam);
-        localStorage.setItem("email", emal);
-        localStorage.setItem("profilePic", pPic);
-        localStorage.setItem("logged", true);
+  console.log(result.user.uid);
+        axios.post("http://localhost:8080/userInfo",{
+          name : result.user.displayName,
+          email : result.user.email,
+          profilePic : result.user.profilePic,
+          uid  : result.user.uid,
+          phoneNo : result.user.phoneNumber,
+          
+          
+        }).then(()=>{
+          console.log("posted over db");
+          const nam = result.user.displayName;
+          const emal = result.user.email;
+          const pPic = result.user.photoURL;
+          setName(result.user.displayName)
+          setMail(result.user.email);
+          setLogged(true);
+          setProfilePic(result.user.photoURL);
+          localStorage.setItem("name", nam);
+          localStorage.setItem("email", emal);
+          localStorage.setItem("profilePic", pPic);
+          localStorage.setItem("logged", true);
+        })
+       
   
         // navigate("HOME")
-        window.location.href = "/HOME";
+        // window.location.href = "/HOME";
       })
       .catch((error) => {
         console.log(error);
