@@ -53,7 +53,7 @@ const navigate = useNavigate();
       .then((result) => {
   
   console.log(result.user.uid);
-        axios.post("http://localhost:8080/userInfo",{
+        axios.post("http://serene-chamber-52731.herokuapp.com/userInfo",{
           name : result.user.displayName,
           email : result.user.email,
           profilePic : result.user.profilePic,
@@ -74,7 +74,7 @@ const navigate = useNavigate();
           localStorage.setItem("email", emal);
           localStorage.setItem("profilePic", pPic);
           localStorage.setItem("logged", true);
-           navigate("HOME")
+          //  navigate("HOME")
           window.location.href = "/HOME";
         })
        
