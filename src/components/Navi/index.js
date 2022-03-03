@@ -74,11 +74,13 @@ const navigate = useNavigate();
           localStorage.setItem("email", emal);
           localStorage.setItem("profilePic", pPic);
           localStorage.setItem("logged", true);
+           navigate("HOME")
+          window.location.href = "/HOME";
         })
        
   
-        // navigate("HOME")
-        window.location.href = "/HOME";
+       
+        
       })
       .catch((error) => {
         console.log(error);
