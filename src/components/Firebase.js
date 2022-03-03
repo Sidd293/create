@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 const firebaseConfig = {
     apiKey: "AIzaSyClTcXpAV3ETWt9t-WnDunfnbirLVkSWmg",
-    authDomain: "brainlox-quiz.firebaseapp.com",
+    authDomain: "https://brainlox-quiz-frontend.herokuapp.com/",
     projectId: "brainlox-quiz",
     storageBucket: "brainlox-quiz.appspot.com",
     messagingSenderId: "668802053264",
