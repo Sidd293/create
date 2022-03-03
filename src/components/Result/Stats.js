@@ -101,10 +101,19 @@ const Stats = ({
  const [tmail,setTmail] = useState("");
   const onOpenModal = () => setOpen(true);
   const onCloseModal = () => setOpen(false);
+  const [mail,setMail] = useState("")
+useEffect(() => {
+ setMail(JSON.parse(localStorage.getItem("email")));
+
+  return () => {
+   
+  }
+}, [])
+
 const sendmail= ()=>{
 
   axios.post('http://serene-chamber-52731.herokuapp.com/sendemail', {
-    email :JSON.parse(localStorage.getItem("email").toString),
+    email :mail,
     text : `your score is ${score}.thanks for playing the game`,
      })
      .then(function (response) {
