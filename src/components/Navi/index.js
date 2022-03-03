@@ -78,7 +78,7 @@ const navigate = useNavigate();
        
   
         // navigate("HOME")
-        // window.location.href = "/HOME";
+        window.location.href = "/HOME";
       })
       .catch((error) => {
         console.log(error);
