@@ -8,8 +8,8 @@ for (let i = 0; i < 100; i++) {
   COUNTDOWN_TIME.hours.push({ key: i, text: i, value: i * 60 * 60 });
 }
 
-for (let i = 0; i < 60; i++) {
-  COUNTDOWN_TIME.minutes.push({ key: i, text: i, value: i * 60 });
+for (let i = 1; i < 4; i++) {
+  COUNTDOWN_TIME.minutes.push({ key: i, text: i*15, value: i * 60*15 });
 }
 
 for (let i = 0; i < 60; i++) {

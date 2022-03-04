@@ -35,7 +35,7 @@ const Main = ({ startQuiz }) => {
   const [allFieldsSelected,setAllFieldsSelected] = useState(false);
   const [countdownTime, setCountdownTime] = useState({
     hours: 0,
-    minutes: 120,
+    minutes: 1800,
     seconds: 0,
   });
   const [processing, setProcessing] = useState(false);
@@ -51,7 +51,7 @@ const Main = ({ startQuiz }) => {
   useEffect(() => {
     setPaperId(id);
     console.log(id,"is id");
-        if(id == "HOME" ){console.log(id , "is home"); setIsIdGiven(false);}else setIsIdGiven(true);
+        if(id == "HOME" ){console.log(id , "is home"); setIsIdGiven(false);}else setIsIdGiven(true);localStorage.setItem("paperId",id);
     }, []);
   useEffect(() => {
     if(paperId)
@@ -184,10 +184,10 @@ const results = data;
                 </Message>
               )}
               <Divider />
-              {!idGiven?<Item.Meta>
-                <h3 style = {{color:"red"}}>PICK YOUR CHOICE</h3>
+              <Item.Meta>
+              {!idGiven? <> <h3 style = {{color:"red"}}>PICK YOUR CHOICE</h3>
 
-                <Dropdown
+                 <Dropdown
                   fluid
                   selection
                   name="category"
@@ -197,7 +197,7 @@ const results = data;
                   value={paperId}
                   onChange={(e, { value }) =>{setPaperId(value)}}
                   disabled={processing}
-                />
+                /></>:null}
                 <br />
                 {/* <Dropdown
                   fluid
@@ -269,7 +269,8 @@ const results = data;
                   onChange={handleTimeChange}
                   disabled={processing}
                 /> */}
-              </Item.Meta>:null}
+                <Item.Meta></Item.Meta>
+              </Item.Meta>
               <Divider />
               <Item.Extra>
                 

@@ -105,33 +105,7 @@ const App = () => {
   return (
     <Layout>
       
-       {/* {loading && <Loader />}
-      {!loading && !isQuizStarted && !isQuizCompleted && (
-        <Main startQuiz={startQuiz} />
-       )}
-       {!loading && isQuizStarted && (
-         <Quiz data={data} countdownTime={countdownTime} endQuiz={endQuiz} />
-      )}
-      {!loading && isQuizCompleted && (
-       <Result {...resultData} replayQuiz={replayQuiz} resetQuiz={resetQuiz} />
-     )} */}
-
-
-
      
-    {/* <Router> */}
-      {/* <Routes> */}
-{/* <Route path='/:p' element = {!loading ? (<Main startQuiz={startQuiz}></Main>):<Loader/>}/> */}
-
-{/* <Route path= {`/:paperId/start`} element = {!loading ? ( <Quiz data={data} countdownTime={countdownTime} endQuiz={endQuiz} />):<Loader/>} > */}
-{/* {!loading ? ( <Quiz data={data} countdownTime={countdownTime} endQuiz={endQuiz} />):<Loader/>} */}
-{/* </Route> */}
-{/* <Route path= {"/:paperId/result"} element =   {!loading ? ( <Result {...resultData} replayQuiz={replayQuiz} resetQuiz={resetQuiz} />):<Loader/>}   > */}
-{/* {!loading && ( <Result {...resultData} replayQuiz={replayQuiz} resetQuiz={resetQuiz} />)} */}
-{/* </Route>
-</Routes>
-
-    </Router> */}
 
 <Router>
 <Routes>
