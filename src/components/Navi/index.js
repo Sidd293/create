@@ -75,7 +75,7 @@ const navigate = useNavigate();
           localStorage.setItem("profilePic", pPic);
           localStorage.setItem("logged", true);
           //  navigate("HOME")
-          if(localStorage.getItem("paperId") != null)  window.location.href = "/"+localStorage.getItem("paperId");
+          if(localStorage.getItem("paperId") != null && localStorage.getItem("logged") )  window.location.href = "/"+localStorage.getItem("paperId");
           else  window.location.href = "/HOME";
         })
        
