@@ -106,93 +106,127 @@ const sendmail= ()=>{
   axios.post('http://serene-chamber-52731.herokuapp.com/sendemail', {
     email :tmail,
     text : `your score is ${score}.thanks for playing the game`,
-    html: `<!DOCTYPE html>
-    <html lang="en">
-    
-    <head>
-    
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-        <!-- <link rel="stylesheet" href="style.css"> -->
-        <style>
-            /* @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@1,700&display=swap'); */
-    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@700&family=IBM+Plex+Sans:ital,wght@1,700&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=IBM+Plex+Sans+Condensed:wght@700&family=IBM+Plex+Sans:ital,wght@1,700&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Cinzel&display=swap');
+    html: `<!DOCTYPE html><html><head><link href="https://fonts.googleapis.com/css?family=Great+Vibes&display=swap" rel="stylesheet" /><link href="https://fonts.googleapis.com/css?family=Fjord&display=swap" rel="stylesheet" /><link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans+Condensed&display=swap" rel="stylesheet" /></head><body><div class="v1_3"><span class="v1_5">Certificate of Excellence</span><span class="v3_21">This is to certify that you have successfully cleared the quiz and have scored 70% . congratulations ! you are among 2% top scorers in month of march</span><div class="name"></div><div class="name"></div><span class="v3_26">DATE</span><span class="v3_27">Director Signature</span><div class="v4_32"></div><span class="v3_7">Brainlox Education</span><span class="v3_11">presented to</span><span class="v3_15">Siddhartha Bajpai</span></div></body></html> <br/><br/> <style>* {
+      box-sizing: border-box;
+    }
     body {
-        font-family: sans-serif;
-        height: 110vh;
-      }
-      
-      .container{
-        background-color: rgb(232, 255, 168);
-        display: flex;
-        flex-direction: column;
-        justify-items: center;
-        align-items: center;
-        width: 70vw;
-        margin: auto;
-        margin-top: 80px;
-        height:80vh;
-        padding-inline: 70px;
-      padding-top: 40px;
-        border:2px solid rgb(255,215,0);
-        box-shadow: 
-    0 0 0 4px rgb(212, 183, 17),0 0 0 40px rgb(232, 255, 168),0 0 0 70px rgb(212, 183, 17);
-        /* justify-content: center; */
-      
-      
-      }
-    
-      h1{
-          
-        margin: 1px;
-        font-family: 'IBM Plex Sans', sans-serif;
-        font-family: 'IBM Plex Sans Condensed', sans-serif;
-      
+      font-size: 14px;
     }
-    
-    h2
-    {
-        margin: 1px;
-        font-family: 'Great Vibes', cursive;
-      font-size: 3em;
+    .v1_3 {
+      width: 100%;
+      height: 916px;
+      background: rgba(255,241,195,1);
+      opacity: 1;
+      position: relative;
+      top: 0px;
+      left: 0px;
+      overflow: hidden;
     }
-    h3{
-        margin: 1px;
-        font-family: 'Cinzel', serif;
-        font-size: 1.5em;
-        font-stretch: expanded;
+    .v1_5 {
+      width: 698px;
+      color: rgba(0,0,0,1);
+      position: absolute;
+      top: 243px;
+      left: 371px;
+      font-family: Great Vibes;
+      font-weight: Regular;
+      font-size: 96px;
+      opacity: 1;
+      text-align: left;
     }
-    .ds_cont{
-        margin-top: 5%;
-    display: flex;
-    justify-items: self-start;
-    justify-content: space-around;
-    align-items: center;
+    .v3_21 {
+      width: 876px;
+      color: rgba(0,0,0,1);
+      position: absolute;
+      top: 633px;
+      left: 277px;
+      font-family: Fjord;
+      font-weight: One;
+      font-size: 24px;
+      opacity: 1;
+      text-align: left;
     }
-    .ds_child{
-    padding-inline:10%;
-    padding-top: 2%;
-    margin-inline: 200px;
-    border-top: 3px solid black;
+    .name {
+      color: #fff;
     }
-        </style>
-    </head>
-    <body>
-        <div id="app"></div>
-        <div class= "container">
-            <h1>Brainlox Education</h1>
-           <h2>Certificate of Excellence</h2>
-           <h4>presented to</h4>
-           <h3>Siddhartha Bajpai</h3>
-           <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et asperiores nostrum tempora? Necessitatibus, quia. Repellat alias tempora, eaque dolores, iusto quo unde vero, nihil sapiente maiores ullam harum vel odio?</h5>
-    <div class = "ds_cont"> <h5 class = "ds_child">Date</h5> <h5 class = "ds_child">Director</h5> </div>
-        </div>
-    </body>
-    </html>`
+    .name {
+      color: #fff;
+    }
+    .v3_26 {
+      width: 64px;
+      color: rgba(0,0,0,1);
+      position: absolute;
+      top: 774px;
+      left: 338px;
+      font-family: Fjord;
+      font-weight: One;
+      font-size: 24px;
+      opacity: 1;
+      text-align: left;
+    }
+    .v3_27 {
+      width: 199px;
+      color: rgba(0,0,0,1);
+      position: absolute;
+      top: 774px;
+      left: 464px;
+      font-family: Fjord;
+      font-weight: One;
+      font-size: 24px;
+      opacity: 1;
+      text-align: left;
+    }
+    .v4_32 {
+      width: 100%;
+      height: 100%;
+      background: url("../images/v4_32.png");
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+      opacity: 1;
+      position: absolute;
+      top: 10px;
+      left: 30px;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      overflow: hidden;
+    }
+    .v3_7 {
+      width: 487px;
+      color: rgba(0,0,0,1);
+      position: absolute;
+      top: 116px;
+      left: 472px;
+      font-family: IBM Plex Sans Condensed;
+      font-weight: Regular;
+      font-size: 64px;
+      opacity: 1;
+      text-align: left;
+    }
+    .v3_11 {
+      width: 200px;
+      color: rgba(0,0,0,1);
+      position: absolute;
+      top: 401px;
+      left: 620px;
+      font-family: Fjord;
+      font-weight: One;
+      font-size: 36px;
+      opacity: 1;
+      text-align: left;
+    }
+    .v3_15 {
+      width: 517px;
+      color: rgba(0,0,0,1);
+      position: absolute;
+      top: 488px;
+      left: 461px;
+      font-family: Fjord;
+      font-weight: One;
+      font-size: 64px;
+      opacity: 1;
+      text-align: left;
+    }
+    </style>`
      })
      .then(function (response) {
        console.log(response);
