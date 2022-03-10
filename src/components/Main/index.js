@@ -8,6 +8,7 @@ import {
   Divider,
   Button,
   Message,
+  Loader,
 } from 'semantic-ui-react';
 import "./style.css";
 import mindImg from '../../images/mindimg.png';
@@ -22,6 +23,7 @@ import {
 import { shuffle } from '../../utils';
 
 import Offline from '../Offline';
+import Error404 from '../Error404.js';
 
 
 const Main = ({ startQuiz }) => {
@@ -44,15 +46,20 @@ const Main = ({ startQuiz }) => {
   const [paperId,setPaperId]  = useState();
   const [papers,setPapers] = useState([]);
   const [idGiven,setIsIdGiven] = useState(false);
-  const [testsLoaded,setTestsLoaded] = useState(true)
+  const [testsLoaded,setTestsLoaded] = useState(false)
   const [minSelected,setMinSelected]  =useState(false)
   const [hourSelected,setHourSelected]  =useState(false)
-
+  const [idList,setIdList] = useState([]);
+  const [is404,setIs404] = useState(true);
   useEffect(() => {
     setPaperId(id);
     console.log(id,"is id");
-        if(id == "HOME" ){console.log(id , "is home"); setIsIdGiven(false);}else setIsIdGiven(true);localStorage.setItem("paperId",id);
-    }, []);
+    console.log("test paper value");console.log(papers);
+    
+        if(id == "HOME" ){console.log(id , "is home"); setIsIdGiven(false); setIs404(false)}else if(is404) {setIsIdGiven(true);localStorage.setItem("paperId",id);}
+    }, [is404]);
+ 
+    
   useEffect(() => {
     if(paperId)
     setAllFieldsSelected(true)
@@ -64,7 +71,11 @@ const Main = ({ startQuiz }) => {
       fetch("http://serene-chamber-52731.herokuapp.com/allTests")
       .then(respone => respone.json())
       .then(data =>{
+      
        data.map(m=>{
+         
+         setIdList([...idList,m._id]); 
+         if(id!='HOME' && id == m._id) setIs404(false);
          var ob = {
            key : m._id,
            text : m.papername,
@@ -74,6 +85,7 @@ const Main = ({ startQuiz }) => {
         t.push(ob);
         console.log(ob);
        })
+    
         setPapers(t);
         setTestsLoaded(true);
       });
@@ -164,9 +176,11 @@ const results = data;
         }, 1000)
       );
   };
-
+  
   if (offline) return <Offline />;
-
+else if(!testsLoaded) { return (<><Loader></Loader></>) }
+ if(is404) return(<><Error404></Error404></>)
+else
   return (
     <Container>
       <Segment>

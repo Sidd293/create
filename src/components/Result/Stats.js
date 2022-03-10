@@ -106,7 +106,7 @@ const sendmail= ()=>{
   axios.post('http://serene-chamber-52731.herokuapp.com/sendemail', {
     email :tmail,
     text : `your score is ${score}.thanks for playing the game`,
-    html: `<!DOCTYPE html><html><head><link href="https://fonts.googleapis.com/css?family=Great+Vibes&display=swap" rel="stylesheet" /><link href="https://fonts.googleapis.com/css?family=Fjord&display=swap" rel="stylesheet" /><link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans+Condensed&display=swap" rel="stylesheet" /></head><body><div class="v1_3"><span class="v1_5">Certificate of Excellence</span><span class="v3_21">This is to certify that you have successfully cleared the quiz and have scored 70% . congratulations ! you are among 2% top scorers in month of march</span><div class="name"></div><div class="name"></div><span class="v3_26">DATE</span><span class="v3_27">Director Signature</span><div class="v4_32"></div><span class="v3_7">Brainlox Education</span><span class="v3_11">presented to</span><span class="v3_15">Siddhartha Bajpai</span></div></body></html> <br/><br/> <style>* {
+    html: `<style>* {
       box-sizing: border-box;
     }
     body {
