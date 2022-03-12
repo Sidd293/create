@@ -7,9 +7,9 @@ const Header = () => {
   const [appAccepted, setAppAccepted] = useState(false);
 
 useEffect(() => {
- if( localStorage.getItem("logged") == false)
+ if( localStorage.getItem("logged") == null)
   {
- 
+ logout();
   }
  
   

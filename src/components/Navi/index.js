@@ -21,7 +21,7 @@ const Navi = () => {
   
 const navigate = useNavigate();
   useEffect(() => {
-    if(JSON.parse(localStorage.getItem("logged"))  == true)
+    if(localStorage.getItem('logged') !== null && JSON.parse(localStorage.getItem("logged"))  == true)
    {
     //  window.location.reload();
      console.log("user was logged in")
