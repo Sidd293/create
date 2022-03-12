@@ -50,6 +50,7 @@ const Main = ({ startQuiz }) => {
   const [minSelected,setMinSelected]  =useState(false)
   const [hourSelected,setHourSelected]  =useState(false)
   const [idList,setIdList] = useState([]);
+  const [papername,setPapername] = useState("");
   const [is404,setIs404] = useState(true);
   useEffect(() => {
     setPaperId(id);
@@ -83,7 +84,7 @@ const Main = ({ startQuiz }) => {
            
          }
         t.push(ob);
-        console.log(ob);
+        // console.log(ob);
        })
     
         setPapers(t);
@@ -119,12 +120,20 @@ const Main = ({ startQuiz }) => {
 
     // const API = `https://opentdb.com/api.php?amount=${numOfQuestions}&category=${category}&difficulty=${difficulty}&type=${questionsType}`;
     const API = `http://serene-chamber-52731.herokuapp.com/show/${paperId}`;
+    
    console.log(paperId);
     fetch(API)
       .then(respone => respone.json())
       .then(data =>
         setTimeout(() => {
           const { response_code, result } = data;
+          papers.map(m=>{
+            if(m.value === paperId) {localStorage.setItem("subject",m.text);
+        }
+          })
+          
+        
+         
 const results = data;
    console.log(data);
    if(data.length == 0) 
@@ -209,7 +218,7 @@ else
         header={testsLoaded?"":"fetching tests"}
                   options={papers}
                   value={paperId}
-                  onChange={(e, { value }) =>{setPaperId(value)}}
+                  onChange={(e, data) =>{setPaperId(data.value);setPapername(data.text)}}
                   disabled={processing}
                 /></>:null}
                 <br />
