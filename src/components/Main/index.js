@@ -131,7 +131,10 @@ const Main = ({ startQuiz }) => {
       .then(data =>
         setTimeout(() => {
           const { response_code, result } = data;
-          localStorage.setItem("subject",papername);
+          papers.map(m=>{
+            if(m.key == paperId) localStorage.setItem("subject",m.text);
+          })
+          
           console.log("for local storage item is",papername)
 const results = data;
    console.log(data);
@@ -217,7 +220,7 @@ else
         header={testsLoaded?"":"fetching tests"}
                   options={papers}
                   value={paperId}
-                  onChange={(e, data) =>{setPaperId(data.value);setPapername(data.text)}}
+                  onChange={(e, data) =>{setPaperId(data.value)}}
                   disabled={processing}
                 /></>:<><h1>{paperTitle}</h1></>}
                 <br />

@@ -108,6 +108,7 @@ const sendmail= ()=>{
     text : `your score is ${score}.thanks for playing the game`,
     name : localStorage.getItem("name"),
     score : score,
+    subject : localStorage.getItem("subject"),
     
      })
      .then(function (response) {
