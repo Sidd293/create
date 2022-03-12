@@ -52,6 +52,7 @@ const Main = ({ startQuiz }) => {
   const [idList,setIdList] = useState([]);
   const [papername,setPapername] = useState("");
   const [is404,setIs404] = useState(true);
+  const [paperTitle,setPaperTitle] = useState("");
   useEffect(() => {
     setPaperId(id);
     console.log(id,"is id");
@@ -77,6 +78,9 @@ const Main = ({ startQuiz }) => {
          
          setIdList([...idList,m._id]); 
          if(id!='HOME' && id == m._id) setIs404(false);
+         if(paperId == m.id) {
+           setPaperTitle(m.papername);
+         }
          var ob = {
            key : m._id,
            text : m.papername,
@@ -127,13 +131,8 @@ const Main = ({ startQuiz }) => {
       .then(data =>
         setTimeout(() => {
           const { response_code, result } = data;
-          papers.map(m=>{
-            if(m.value === paperId) {localStorage.setItem("subject",m.text);
-        }
-          })
-          
-        
-         
+          localStorage.setItem("subject",papername);
+          console.log("for local storage item is",papername)
 const results = data;
    console.log(data);
    if(data.length == 0) 
@@ -220,7 +219,7 @@ else
                   value={paperId}
                   onChange={(e, data) =>{setPaperId(data.value);setPapername(data.text)}}
                   disabled={processing}
-                /></>:null}
+                /></>:<><h1>{paperTitle}</h1></>}
                 <br />
                 {/* <Dropdown
                   fluid

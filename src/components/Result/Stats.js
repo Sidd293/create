@@ -104,9 +104,9 @@ const Stats = ({
 const sendmail= ()=>{
 
   axios.post('http://serene-chamber-52731.herokuapp.com/sendemail', {
-    email :tmail,
-    subject : JSON.parse(localStorage.getItem("subject")),
-    user : JSON.parse(localStorage.getItem("name")),
+    email : tmail,
+    text : `your score is ${score}.thanks for playing the game`,
+    name : localStorage.getItem("name"),
     score : score,
     
      })
