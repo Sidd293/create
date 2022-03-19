@@ -1,5 +1,7 @@
 import React, { useState,useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { MathComponent } from 'mathjax-react'
+import "./styles.css"
 import {
   Container,
   Segment,
@@ -46,7 +48,11 @@ return ()=>{
   const [timeTaken, setTimeTaken] = useState(null);
   const [response ,setResponse]  = useState("");
   const [userSlectedId,setUserSlectedId] = useState()
+  const [ws, setWs] = useState();
+ const [qtime,setQtime] = useState(0);
+
   const handleItemClick = (e, {name ,index}) => {
+  
     setUserSlectedAns(name);
     setUserSlectedId(index)
     // console.log(index)
@@ -61,16 +67,22 @@ setResponse(r=>r+""+data[questionIndex].question.qid+"$"+return_op(userSlectedId
     //   point = 1;
      
     // }
-
+    // console.log(ws);
+    // ws.send(JSON.stringify({resp : data[questionIndex].options[userSlectedId]._id, quesId :data[questionIndex].question.qid,timeTaken:qtime,uid:localStorage.getItem('uid')}));
+  // ws.emit('data',JSON.stringify({resp : userSlectedId, quesId :data[questionIndex].question.qid}))
     const qna = questionsAndAnswers;
     qna.push({
       question: he.decode(data[questionIndex].question.statement),
       user_answer: userSlectedAns,
+      time : qtime,
+      sid : data[questionIndex].options[userSlectedId]._id,
+      qid : data[questionIndex].question.qid,
       // correct_answer: he.decode(data[questionIndex].correct_answer),
       correct_answer: "null",
 
       point
     });
+    setQtime(0);
 
 
     if (questionIndex === data.length -1) {
@@ -91,6 +103,37 @@ setResponse(r=>r+""+data[questionIndex].question.qid+"$"+return_op(userSlectedId
     setUserSlectedAns(null);
     setQuestionsAndAnswers(qna);
   };
+useEffect(() => {
+  const t= setInterval(()=>{setQtime(qtime=>qtime+1000)},1000)
+
+  return () => 
+    clearInterval(t);
+  
+}, [])
+
+useEffect(() => {
+  ///important
+  // setWs(new WebSocket("ws://localhost:3004/"))
+  
+	// ws.onconnection = () => {
+	// 	console.log('WebSocket Connected');
+	// }
+
+	// ws.onmessage = (e) => {
+	//   // const message = JSON.parse(e.data);
+	  
+	// }
+
+	return () => {
+		// ws.onclose = () => {
+		// 	console.log('WebSocket Disconnected');
+		// 	setWs(new WebSocket(URL));
+		// }
+	}
+}, []);
+
+
+
 
   const timeOver = timeTaken => {
 setResponse(r=>r+""+data[questionIndex].question.qid+"$"+return_op(userSlectedId)+"$")
@@ -137,7 +180,9 @@ setResponse(r=>r+""+data[questionIndex].question.qid+"$"+return_op(userSlectedId
                 <br />
                 <Item.Meta>
                   <Message size="huge" floating>
-                    <b>{`Q. ${he.decode(data[questionIndex].question.statement)}`}</b>
+                    {/* <b>{`Q. ${he.decode(data[questionIndex].question.statement)}`}</b> */}
+                    <b className='bold'>{data[questionIndex].question.statement.split('$').map((w,i)=>w.charAt(0) != '?' ?<>{w}</>:<MathComponent className = "math_component" tex={w} />)}</b>
+                    
                     <div>{(he.decode(data[questionIndex].question.imgsrc).length>2)?<img width  = "30%" height = "30%" src =  {he.decode(data[questionIndex].question.imgsrc)}></img>:null}</div>
                   </Message>
                   <br />

@@ -222,7 +222,7 @@ else
                   value={paperId}
                   onChange={(e, data) =>{setPaperId(data.value)}}
                   disabled={processing}
-                /></>:<><h1>{paperTitle}</h1></>}
+                /></>:<><h1>{localStorage.getItem("subject")}</h1></>}
                 <br />
                 {/* <Dropdown
                   fluid

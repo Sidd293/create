@@ -3,11 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
-
+import Latex from "./components/Latex.js"
 ReactDOM.render(
-  <React.StrictMode>
+
+    <Latex>
     <App />
-  </React.StrictMode>,
+    </Latex>
+    
+,
   document.getElementById('root')
 );
 

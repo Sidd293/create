@@ -18,7 +18,7 @@ const Navi = () => {
   const [name,setName] = useState("")
   const [profilePic,setProfilePic] = useState("");
   const [logged,setLogged] = useState(false)
-  
+  const [f,setF] = useState("\\(\\sqrt{10} \\over{2}{2}\\)")
 const navigate = useNavigate();
   useEffect(() => {
     if(localStorage.getItem('logged') !== null && JSON.parse(localStorage.getItem("logged"))  == true)
@@ -71,6 +71,7 @@ const navigate = useNavigate();
           setLogged(true);
           setProfilePic(result.user.photoURL);
           localStorage.setItem("name", nam);
+          localStorage.setItem("uid", result.user.uid);
           localStorage.setItem("email", emal);
           localStorage.setItem("profilePic", pPic);
           localStorage.setItem("logged", true);
@@ -94,7 +95,7 @@ const navigate = useNavigate();
 
 <div className='landing_container'>
   <div className='surface img'>.</div><div className = "surface">
-  
+ {f}
   <Button size = "huge" class="ui primary button" onClick={login} >
       <Icon  color='blue' name='google' /> Login With Google</Button>
   

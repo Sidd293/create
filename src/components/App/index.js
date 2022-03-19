@@ -34,12 +34,21 @@ const App = () => {
   };
 
   const endQuiz = resultData => {
-   
-    setLoading(true);
+   setLoading(true);
     setTimeout(() => {
       setIsQuizStarted(false);
       setIsQuizCompleted(true);
-      
+      var obj ;
+   var t=[];
+      resultData.questionsAndAnswers.forEach(m=>{
+obj = {
+qid : m.qid,   // question id
+sid : m.sid ,  // selected id
+time : m.time ,      // question time
+}
+      })
+
+
       fetch(
   "http://serene-chamber-52731.herokuapp.com/calc/"+paperId+"?response="+resultData.response)
                     .then((res) => res.json())
