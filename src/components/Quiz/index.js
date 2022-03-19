@@ -181,7 +181,7 @@ setResponse(r=>r+""+data[questionIndex].question.qid+"$"+return_op(userSlectedId
                 <Item.Meta>
                   <Message size="huge" floating>
                     {/* <b>{`Q. ${he.decode(data[questionIndex].question.statement)}`}</b> */}
-                    <b className='bold'>{data[questionIndex].question.statement.split('$').map((w,i)=>w.charAt(0) != '?' ?<>{w}</>:<MathComponent className = "math_component" tex={w} />)}</b>
+                    <b className='bold'>{data[questionIndex].question.statement.split('$').map((w,i)=>w.charAt(0) != '?' ?<>{w}</>:<MathComponent className = "math_component" tex={w.substring(1)} />)}</b>
                     
                     <div>{(he.decode(data[questionIndex].question.imgsrc).length>2)?<img width  = "30%" height = "30%" src =  {he.decode(data[questionIndex].question.imgsrc)}></img>:null}</div>
                   </Message>
