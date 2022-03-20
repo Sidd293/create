@@ -206,7 +206,7 @@ setResponse(r=>r+""+data[questionIndex].question.qid+"$"+return_op(userSlectedId
                           widths = "fifteen"
                         >
                           <b style={{ marginRight: '8px' }}>{letter}</b>
-                          {decodedOption}{" "}
+                          {decodedOption.split('$').map((w,i)=>w.charAt(0) != '?' ?<>{w}</>:<MathComponent className = "math_component" tex={w.substring(1)} />)}{" "}
                          {(option.imgsrc.length>2)?<div> <img src={he.decode(option.imgsrc)}  width  = "15%" height = "15%"></img>
                          </div>:null}
                         </Menu.Item>
